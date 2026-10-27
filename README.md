@@ -1,254 +1,106 @@
-# Memori
+# Hi, I'm Dhaval Dudhatra 👋
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MemoriLabs/Memori/main/images/benchmark.png" alt="Memori banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/MemoriLabs/Memori/main/images/benchmark.png" alt="Dhaval Dudhatra banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://memorilabs.ai/">
-    <img src="https://img.shields.io/badge/Website-memorilabs.ai-0A84FF?style=for-the-badge&logo=globe&logoColor=white" alt="Website" />
+  <a href="https://www.linkedin.com/in/dhaval-dudhatra-4b0755181y" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-  <a href="https://github.com/MemoriLabs/Memori/stargazers">
-    <img src="https://img.shields.io/badge/Stars-⭐-FFB000?style=for-the-badge" alt="Stars" />
+  <a href="https://github.com/DhavalDudhatra" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-DhavalDudhatra-181717?style=for-the-badge&logo=github" alt="GitHub" />
   </a>
-  <a href="https://github.com/MemoriLabs/Memori/issues">
-    <img src="https://img.shields.io/badge/Issues-Open-FF5A5F?style=for-the-badge" alt="Issues" />
-  </a>
-  <a href="https://discord.gg/FpytKAxnFb">
-    <img src="https://img.shields.io/badge/Community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
-  </a>
-  <a href="https://github.com/MemoriLabs/Memori/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-Apache%202.0-3A7F0D?style=for-the-badge" alt="License" />
+  <a href="https://memorilabs.ai" target="_blank">
+    <img src="https://img.shields.io/badge/Website-Memori-0EA5E9?style=for-the-badge&logo=globe&logoColor=white" alt="Website" />
   </a>
 </p>
 
 <p align="center">
-  <strong>Memory from what agents do, not just what they say.</strong>
+  <strong>AI Engineer • Builder of Agent Memory Systems</strong>
 </p>
 
-Memori is agent-native memory infrastructure for production AI systems. It turns agent execution and conversation into persistent, structured memory that is retrieval-ready, LLM-agnostic, and easy to deploy in the environments you already trust.
+I design and build systems that help AI agents remember, reason, and act with context over time.
 
-- Built for enterprise and production workloads
-- Works with your existing data stack and deployment model
-- Supports multiple LLMs, frameworks, and SDKs
-- Captures long-term context without forcing a full app rewrite
+My work focuses on agent-native memory infrastructure, production AI systems, and practical tooling that turns conversations and execution traces into persistent, usable memory.
 
-<hr>
-
-## Why Memori?
-
-Most AI systems forget between sessions. Memori gives your agents durable memory across users, processes, and sessions.
-
-- Persistent memory across conversations and workflows
-- Structured recall for facts, preferences, and context
-- Better user experience with reduced repeat questions
-- Lower prompt overhead using targeted memory retrieval
-- Flexible deployment: cloud, VPC, single-tenant, or on-prem
+- Building memory infrastructure for LLM-powered systems
+- Designing reliable, production-ready AI workflows
+- Exploring agent orchestration, retrieval, and context durability
+- Shipping tools that make AI systems feel persistent and useful
 
 <hr>
 
-## Core capabilities
+## Featured work
 
-<div align="center">
-  <img src="https://img.shields.io/badge/LLM%20agnostic-Yes-00C853?style=flat-square" />
-  <img src="https://img.shields.io/badge/Frameworks-LangChain%20%7C%20Agno%20%7C%20Pydantic%20AI-2962FF?style=flat-square" />
-  <img src="https://img.shields.io/badge/Deployments-Cloud%20%7C%20BYODB%20%7C%20On-prem-FF6D00?style=flat-square" />
-  <img src="https://img.shields.io/badge/Memory-Advanced%20Augmentation-7C4DFF?style=flat-square" />
-</div>
+### Memori
 
-### Memory concepts
+[Memori](https://github.com/DhavalDudhatra/Memori) is an agent-native memory layer for production AI systems. It captures context from conversations and agent behavior, then makes it retrievable in a structured, scalable way.
 
-Memori tracks memory at multiple levels:
+It is built for:
 
-- Entity: user, customer, or identity
-- Process: app, workflow, or agent
-- Session: active interaction between the entity and process
-- Augmentation: facts, rules, preferences, people, events, and relationships
-
-This enables richer memory behavior without increasing app complexity.
-
-<hr>
-
-## Quick start
-
-### Install
-
-<details>
-<summary><b>TypeScript SDK</b></summary>
-
-```bash
-npm install @memorilabs/memori
-```
-
-</details>
-
-<details>
-<summary><b>Python SDK</b></summary>
-
-```bash
-pip install memori
-```
-
-</details>
-
-### Use it
-
-<details>
-<summary><b>TypeScript</b></summary>
-
-```typescript
-import { OpenAI } from 'openai';
-import { Memori } from '@memorilabs/memori';
-
-const client = new OpenAI();
-const mem = new Memori().llm
-  .register(client)
-  .attribution('user_123', 'support_agent');
-
-async function main() {
-  await client.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [{ role: 'user', content: 'My favorite color is blue.' }],
-  });
-
-  const response = await client.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [{ role: 'user', content: "What's my favorite color?" }],
-  });
-
-  console.log(response.choices[0].message.content);
-}
-```
-
-</details>
-
-<details>
-<summary><b>Python</b></summary>
-
-```python
-from memori import Memori
-from openai import OpenAI
-
-client = OpenAI()
-mem = Memori().llm.register(client)
-mem.attribution(entity_id="user_123", process_id="support_agent")
-
-client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "My favorite color is blue."}],
-)
-
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "What's my favorite color?"}],
-)
-print(response.choices[0].message.content)
-```
-
-</details>
-
-<hr>
-
-## Supported ecosystems
-
-### LLMs
-
-- Anthropic
-- Bedrock
-- DeepSeek
-- Gemini
-- Grok (xAI)
-- OpenAI (Chat Completions & Responses API)
-
-### Frameworks
-
-- Agno
-- LangChain
-- Pydantic AI
-
-### Platforms
-
-- DeepSeek
-- Nebius AI Studio
-
-<hr>
-
-## Product highlights
-
-### Memori Cloud
-
-Zero-config memory service for developers who want a managed, production-ready memory layer.
-
-### BYODB
-
-Bring your own database and deploy in a model that matches your infrastructure requirements.
-
-### MCP integration
-
-Connect Memori to tools like Claude Code, Cursor, Codex, Warp, and other client environments with minimal setup.
-
-### Benchmark results
-
-Memori was evaluated on the LoCoMo benchmark for long-conversation memory and achieved strong retrieval quality while significantly reducing prompt size and cost compared with naive baselines.
+- LLM-agnostic memory workflows
+- enterprise and production deployment
+- multi-agent and application-wide context continuity
+- reducing repeated prompts and forgotten user context
 
 <p align="center">
-  <a href="https://memorilabs.ai/benchmark">
-    <img src="https://raw.githubusercontent.com/MemoriLabs/Memori/main/images/benchmark.png" alt="Memori benchmark results" width="80%" />
+  <a href="https://github.com/DhavalDudhatra/Memori">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=DhavalDudhatra&repo=Memori&theme=tokyonight&hide_border=true" alt="Memori repo" />
   </a>
 </p>
 
 <hr>
 
-## Architecture at a glance
+## Tech stack
 
-```text
-User / Agent / App
-        │
-        ▼
-   Memori SDK
-        │
-        ▼
-  Memory Pipeline
-  ├─ Attribution
-  ├─ Session tracking
-  ├─ Memory extraction
-  ├─ Retrieval + ranking
-  └─ Context recall
-        │
-        ▼
-    LLM / App Runtime
-```
+### Languages
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+### AI / Infra
+
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square)
+![Pydantic](https://img.shields.io/badge/Pydantic-FF8C42?style=flat-square)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 
 <hr>
 
-## Documentation
+## Current focus
 
-- [Website](https://memorilabs.ai/)
-- [Docs](https://memorilabs.ai/docs/memori-cloud/)
-- [BYODB Docs](https://memorilabs.ai/docs/memori-byodb/)
-- [Benchmark Overview](https://memorilabs.ai/benchmark)
-- [Benchmark Paper](https://arxiv.org/abs/2603.19935)
-
-<hr>
-
-## Community and support
-
-- [Discord](https://discord.gg/FpytKAxnFb)
-- [Issues](https://github.com/MemoriLabs/Memori/issues)
-- [Contributing Guide](https://github.com/MemoriLabs/Memori/blob/main/CONTRIBUTING.md)
+- Building memory systems for real-world AI agents
+- Improving long-term recall and contextual intelligence
+- Creating tools that help AI behave more like a durable collaborator
+- Connecting system design, product thinking, and engineering execution
 
 <hr>
 
-## License
-
-Apache 2.0 — see [LICENSE](https://github.com/MemoriLabs/Memori/blob/main/LICENSE).
+## GitHub stats
 
 <p align="center">
-  <a href="https://github.com/MemoriLabs/Memori/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=MemoriLabs/Memori" alt="Contributors" />
-  </a>
+  <img src="https://github-readme-stats.vercel.app/api?username=DhavalDudhatra&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub stats" />
 </p>
 
 <p align="center">
-  <strong>Built for agents that remember.</strong>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DhavalDudhatra&theme=tokyonight&hide_border=true" alt="GitHub streak" />
+</p>
+
+<hr>
+
+## Let's connect
+
+I’m open to collaborations, product conversations, and technical discussions around AI systems, memory, and agent infrastructure.
+
+- LinkedIn: https://www.linkedin.com/in/dhaval-dudhatra-4b0755181y
+- GitHub: https://github.com/DhavalDudhatra
+- Project: https://github.com/DhavalDudhatra/Memori
+
+<p align="center">
+  <strong>Building AI systems that remember.</strong>
 </p>
